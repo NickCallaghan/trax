@@ -1,9 +1,10 @@
+import React from "react";
 import NextLink from "next/link";
 import { ListItem, ListIcon, LinkBox, LinkOverlay } from "@chakra-ui/react";
 
 interface props {
   name: string;
-  icon: any;
+  icon?: any;
   route: string;
 }
 
@@ -13,7 +14,7 @@ const MenuLink: React.FC<props> = ({ name, icon, route }) => {
       <LinkBox>
         <NextLink href={route} passHref>
           <LinkOverlay>
-            <ListIcon as={icon} color="white" marginRight="20px" />
+            {icon && <ListIcon as={icon} color="white" marginRight="20px" />}
             {name}
           </LinkOverlay>
         </NextLink>

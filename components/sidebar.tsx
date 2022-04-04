@@ -1,25 +1,14 @@
+import { Box, Divider, List, ListItem } from "@chakra-ui/react";
 import NextImage from "next/image";
-import NextLink from "next/link";
+import {
+  MdFavorite,
+  MdHome,
+  MdLibraryMusic,
+  MdPlaylistAdd,
+  MdSearch,
+} from "react-icons/md";
 import MenuLink from "./menuLink";
 import MenuSection from "./menuSection";
-
-import {
-  Box,
-  List,
-  ListItem,
-  ListIcon,
-  Divider,
-  Center,
-  LinkBox,
-  LinkOverlay,
-} from "@chakra-ui/react";
-import {
-  MdHome,
-  MdSearch,
-  MdLibraryMusic,
-  MdFavorite,
-  MdPlaylistAdd,
-} from "react-icons/md";
 
 const navLinks = [
   { icon: MdHome, name: "Home", route: "/" },
@@ -31,6 +20,8 @@ const musicMenu = [
   { icon: MdPlaylistAdd, name: "Create Playlist", route: "/" },
   { icon: MdFavorite, name: "Liked Songs", route: "/" },
 ];
+
+const playlists = new Array(50).fill(1).map((_, i) => `Playlist ${i}`);
 
 const Sidebar = () => {
   return (
@@ -49,6 +40,7 @@ const Sidebar = () => {
       <MenuSection>
         {navLinks.map((link, i) => (
           <MenuLink
+            // eslint-disable-next-line react/no-array-index-key
             key={`${link.name}-${i}`}
             name={link.name}
             icon={link.icon}
@@ -61,6 +53,7 @@ const Sidebar = () => {
       <MenuSection>
         {musicMenu.map((link, i) => (
           <MenuLink
+            // eslint-disable-next-line react/no-array-index-key
             key={`${link.name}-${i}`}
             name={link.name}
             icon={link.icon}
@@ -89,42 +82,18 @@ const Sidebar = () => {
           },
         }}
       >
-        Labore laborum fugiat cupidatat commodo consectetur exercitation.
-        Eiusmod dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet
-        enim nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum. Labore
-        laborum fugiat cupidatat commodo consectetur exercitation. Eiusmod
-        dolore aliqua cillum ex aliqua occaecat exercitation. Nisi amet enim
-        nulla occaecat. Sint velit proident dolor occaecat id excepteur
-        adipisicing aliqua do exercitation. Minim magna ad in ipsum.
+        {/* Playlists */}
+        <MenuSection>
+          <List>
+            {playlists.map((playlist, i) => (
+              <MenuLink
+                key={playlist}
+                name={playlist}
+                route={playlist.split(" ").join("-").toLocaleLowerCase()}
+              />
+            ))}
+          </List>
+        </MenuSection>
       </Box>
     </Box>
   );
