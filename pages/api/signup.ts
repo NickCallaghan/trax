@@ -49,5 +49,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
   );
 
+  // Remove password from user response
+  delete user.password;
+
   return res.json(user);
 };
