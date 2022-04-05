@@ -8,6 +8,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const salt = bcrypt.genSaltSync();
   const { email, password, name } = req.body;
 
+  // Handle if required parameters are missing
+  if (!email || !password || !name) {
+    return res.status(400).json({
+      message: "Invalid request: email, password and name are required",
+    });
+  }
+
+  // Create user or handle if user already exists
   let user;
 
   try {
@@ -30,6 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     { expiresIn: "8h" }
   );
 
+  // Set jwt to cookie and return user response
   res.setHeader(
     "Set-Cookie",
     cookie.serialize("TRAX_ACCESS_TOKE", token, {
@@ -40,5 +49,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     })
   );
 
-  res.json(user);
+  return res.json(user);
 };
