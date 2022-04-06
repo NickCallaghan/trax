@@ -41,7 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   // Set jwt to cookie and return user response
   res.setHeader(
     "Set-Cookie",
-    cookie.serialize("TRAX_ACCESS_TOKE", token, {
+    cookie.serialize("TRAX_ACCESS_TOKEN", token, {
       httpOnly: true,
       maxAge: 8 * 60 * 60,
       path: "/",
