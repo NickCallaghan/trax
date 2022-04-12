@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // Create jwt and serialize it to cookie
     const token = jwt.sign(
       { id: user.id, email: user.email, time: Date.now() },
-      "super secret",
+      process.env.JWT_SECRET,
       { expiresIn: "8h" }
     );
 

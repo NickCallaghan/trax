@@ -34,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   const token = jwt.sign(
     { id: user.id, email: user.email, time: Date.now() },
-    "super secret",
+    process.env.JWT_SECRET,
     { expiresIn: "8h" }
   );
 

@@ -1,11 +1,9 @@
-import Head from "next/head";
-import Image from "next/image";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-
-export default function Home() {
+const Home = () => {
   return (
     <div>
       <h1>Home</h1>
     </div>
   );
-}
+};
+
+export default Home;

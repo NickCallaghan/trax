@@ -1,7 +1,7 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import PlayerLayout from "../components/playerLayout";
-
+import { useQueryClient, QueryClientProvider } from "react-query";
 import "reset-css";
+import PlayerLayout from "../components/playerLayout";
 
 const theme = extendTheme({
   colors: {
@@ -30,14 +30,18 @@ const theme = extendTheme({
   },
 });
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   return (
-    <ChakraProvider>
-      <PlayerLayout>
+    <ChakraProvider theme={theme}>
+      {Component.authPage === true ? (
         <Component {...pageProps} />
-      </PlayerLayout>
+      ) : (
+        <PlayerLayout>
+          <Component {...pageProps} />
+        </PlayerLayout>
+      )}
     </ChakraProvider>
   );
-}
+};
 
 export default MyApp;
